@@ -1,59 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# LeadOS - Advanced B2B Lead Generation & AI CRM
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
+[![AI Powered](https://img.shields.io/badge/AI-Powered-FF8C00?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com)
 
-## About Laravel
+**LeadOS** is a powerful, modern B2B Lead Generation Engine and CRM designed for high-performance sales teams. It combines AI-driven lead scoring, automated email sequences, and visual pipeline management into a single, cohesive platform.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Key Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **AI Lead Analysis**: Automatically score and evaluate contacts against your Ideal Customer Profile (ICP).
+- **Automated Sequences**: Scalable multi-step drip campaigns via IMAP/SMTP.
+- **Inbox Scanner**: Intelligent email scanning to detect and import new leads directly from your inbox.
+- **Visual Kanban Pipeline**: Manage deals with a drag-and-drop interface from "Cold" to "Won".
+- **Multi-tenant Workspaces**: Secure data separation for teams and organizations.
+- **Deep Localization**: Fully translated into 10 languages including Arabic, Hindi, Chinese, and European languages.
+- **Chrome Extension Support**: Scrape LinkedIn leads directly into your CRM.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Tech Stack
 
-## Learning Laravel
+- **Backend**: Laravel 11.x, PHP 8.2+
+- **Frontend**: Blade, Tailwind CSS (Vanilla CSS UI), Vite
+- **Database**: MySQL / PostgreSQL
+- **AI Integration**: OpenAI & Groq for lead scoring and insights.
+- **Mail**: Custom SMTP/IMAP integration for outreach.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🌍 Supported Languages
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+LeadOS is built for a global audience with full support for:
+- 🇺🇸 English
+- 🇪🇸 Spanish
+- 🇫🇷 French
+- 🇩🇪 German
+- 🇨🇳 Chinese
+- 🇯🇵 Japanese
+- 🇧🇷 Portuguese
+- 🇷🇺 Russian
+- 🇸🇦 Arabic (RTL Support)
+- 🇮🇳 Hindi
 
-## Laravel Sponsors
+## 📖 Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/mrshahbazdev/lead-quality.git
+   cd lead-quality
+   ```
 
-### Premium Partners
+2. **Install Dependencies**:
+   ```bash
+   composer install
+   npm install
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3. **Environment Setup**:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Contributing
+4. **Run Migrations**:
+   ```bash
+   php artisan migrate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. **Build Assets**:
+   ```bash
+   npm run build
+   ```
 
-## Code of Conduct
+6. **Start the Server**:
+   ```bash
+   php artisan serve
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📈 SEO & Optimization
 
-## Security Vulnerabilities
+This project is optimized for performance and search engines:
+- **Semantic HTML5**: Clean structure for better indexing.
+- **Meta Optimization**: Dynamic titles and descriptions across all public pages.
+- **Performance**: High Lighthouse scores through Vite-optimized assets.
+- **Mobile First**: Fully responsive design for all devices.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📄 License
 
-## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+Built with ❤️ by [MrShahbazDev](https://github.com/mrshahbazdev)

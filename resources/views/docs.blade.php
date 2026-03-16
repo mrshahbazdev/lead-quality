@@ -82,7 +82,7 @@
             }
             .mobile-menu-toggle { display: block !important; color: white; font-size: 1.5rem; cursor: pointer; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); }
             
-            .docs-container { padding: clamp(5rem, 12vw, 8rem) 1rem 2rem; }
+            .docs-container { padding: clamp(5rem, 12vw, 8rem) 1.5rem 2rem; }
             .card { padding: 1.25rem; }
         }
 

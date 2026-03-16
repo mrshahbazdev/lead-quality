@@ -20,12 +20,19 @@
             --glass-border: rgba(255,255,255,0.08);
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
         body { 
             font-family: 'Inter', sans-serif; 
             background: var(--dark); 
             color: #f1f5f9; 
-            overflow-x: hidden;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
         /* Nav */
@@ -125,7 +132,6 @@
     </style>
 </head>
 <body>
-    <nav>
     <nav>
         <a href="/" class="logo"><i class="fa-solid fa-chart-line"></i> Lead<span>OS</span></a>
         <div class="mobile-menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('active')">

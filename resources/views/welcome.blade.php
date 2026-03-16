@@ -66,7 +66,7 @@
 
         .hero::before {
             content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
-            width: 800px; height: 800px; background: radial-gradient(circle, rgba(255,140,0,0.15) 0%, rgba(15,15,26,0) 70%);
+            width: clamp(300px, 100vw, 800px); height: clamp(300px, 100vw, 800px); background: radial-gradient(circle, rgba(255,140,0,0.15) 0%, rgba(15,15,26,0) 70%);
             z-index: -1; border-radius: 50%;
         }
 
@@ -111,9 +111,9 @@
                 gap: 1.5rem;
                 z-index: 200;
             }
-            .mobile-menu-toggle { display: block !important; color: white; font-size: 1.5rem; cursor: pointer; }
+            .mobile-menu-toggle { display: block !important; color: white; font-size: 1.5rem; cursor: pointer; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); }
             
-            .hero { padding: 8rem 1rem 4rem; width: 100%; overflow: hidden; }
+            .hero { padding: 8rem 1rem 4rem; width: 100%; overflow: hidden; position: relative; }
             .hero-actions { flex-direction: column; gap: 0.75rem; padding: 0 1rem; }
             .hero-actions .btn { width: 100%; }
 

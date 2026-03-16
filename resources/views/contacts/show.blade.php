@@ -37,8 +37,28 @@
             </div>
             <div class="info-block">
                 <span style="color: var(--gray); font-size: 0.875rem; text-transform: uppercase;">{{ __('Lead Source') }}</span>
-                <p style="font-weight: 500;">{{ $contact->source ?? __('Unknown') }}</p>
+                <p style="font-weight: 500; display: flex; align-items: center; gap: 0.5rem;">
+                    {{ $contact->source ?? __('Unknown') }}
+                    <span class="source-info-toggle" style="cursor: help; color: var(--gray); font-size: 0.8rem;" title="{{ __('Where does this info come from?') }}">
+                        <i class="fa-solid fa-circle-question"></i>
+                    </span>
+                </p>
+                <div class="source-tooltip" style="display: none; background: var(--dark-2); border: 1px solid var(--glass-border); padding: 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; color: var(--gray); margin-top: 0.5rem;">
+                    <ul style="list-style: none; padding: 0;">
+                        <li><strong>• Chrome Extension:</strong> {{ __('Scraped from LinkedIn.') }}</li>
+                        <li><strong>• Inbox Scan:</strong> {{ __('Found in your connected email.') }}</li>
+                        <li><strong>• CSV Import:</strong> {{ __('Uploaded via spreadsheet.') }}</li>
+                        <li><strong>• Manual Entry:</strong> {{ __('Added by you in LeadOS.') }}</li>
+                    </ul>
+                </div>
             </div>
+
+            <script>
+                document.querySelector('.source-info-toggle').addEventListener('click', function() {
+                    const tooltip = document.querySelector('.source-tooltip');
+                    tooltip.style.display = tooltip.style.display === 'none' ? 'block' : 'none';
+                });
+            </script>
             @if($contact->email)
             <div class="info-block">
                 <span style="color: var(--gray); font-size: 0.875rem; text-transform: uppercase;">{{ __('Email') }}</span>

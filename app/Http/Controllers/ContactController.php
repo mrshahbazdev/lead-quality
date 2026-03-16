@@ -48,7 +48,8 @@ class ContactController extends Controller
 
         $contact = Contact::create(array_merge($validated, [
             'user_id' => auth()->id(),
-            'team_id' => auth()->user()->current_team_id
+            'team_id' => auth()->user()->current_team_id,
+            'source' => 'Manual Entry'
         ]));
 
         return redirect()->route('contacts.index')->with('success', __('Contact created successfully!'));

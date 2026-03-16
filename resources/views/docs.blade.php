@@ -20,12 +20,19 @@
             --glass-border: rgba(255,255,255,0.08);
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
         body { 
             font-family: 'Inter', sans-serif; 
             background: var(--dark); 
             color: #f1f5f9; 
-            overflow-x: hidden;
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
         /* Nav */
@@ -53,8 +60,10 @@
         .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: #ffffff !important; box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4); color: white !important; }
 
-        .docs-container { padding: 8rem 2rem 4rem; max-width: 900px; margin: 0 auto; }
+        .docs-container { padding: clamp(6rem, 15vw, 10rem) 1.5rem 4rem; max-width: 900px; margin: 0 auto; }
         .card { background: var(--dark-2); border: 1px solid var(--glass-border); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; }
+        
+        .docs-container h1 { font-size: clamp(2rem, 8vw, 2.5rem); font-weight: 700; margin-bottom: 1rem; }
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
@@ -69,19 +78,18 @@
                 padding: 1.5rem; 
                 border-bottom: 1px solid var(--glass-border);
                 gap: 1.5rem;
+                z-index: 200;
             }
-            .mobile-menu-toggle { display: block !important; color: white; font-size: 1.5rem; cursor: pointer; }
+            .mobile-menu-toggle { display: block !important; color: white; font-size: 1.5rem; cursor: pointer; position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); }
             
-            .docs-container { padding: 6rem 1rem 2rem; }
-            .docs-container h1 { font-size: 2rem !important; }
-            .card { padding: 1.5rem; }
+            .docs-container { padding: clamp(5rem, 12vw, 8rem) 1rem 2rem; }
+            .card { padding: 1.25rem; }
         }
 
         .mobile-menu-toggle { display: none; }
     </style>
 </head>
 <body>
-    <nav>
     <nav>
         <a href="/" class="logo"><i class="fa-solid fa-chart-line"></i> Lead<span>OS</span></a>
         <div class="mobile-menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('active')">

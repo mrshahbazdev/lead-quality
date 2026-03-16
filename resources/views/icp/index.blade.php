@@ -57,9 +57,30 @@
             </div>
         </div>
 
-        <div style="display: flex; gap: 1rem; justify-content: flex-end; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
+        <div style="display: flex; gap: 1rem; justify-content: flex-end; border-top: 1px solid var(--glass-border); padding-top: 2rem; margin-bottom: 2rem;">
             <button type="submit" class="btn btn-primary" style="padding: 1rem 2.5rem;">{{ __('Save ICP Profile') }}</button>
         </div>
     </form>
+
+    <!-- ICP Help Section -->
+    <div style="background: rgba(255,140,0,0.05); border: 1px solid rgba(255,140,0,0.1); border-radius: 1rem; padding: 1.5rem; margin-top: 1rem;">
+        <h4 style="color: var(--primary-light); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-circle-info"></i> {{ __('How this works') }}
+        </h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div>
+                <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">{{ __('What is the Budget field for?') }}</p>
+                <p style="font-size: 0.85rem; color: var(--gray);">
+                    {{ __('The Budget represents the average "Deal Size" or "Project Value" of your ideal client. For example, if you sell a service that costs $5,000, your Min. Budget should be $5,000. This helps the AI understand if a lead has the financial capacity to work with you.') }}
+                </p>
+            </div>
+            <div>
+                <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem; font-weight: 600;">{{ __('How is the Fit Score calculated?') }}</p>
+                <p style="font-size: 0.85rem; color: var(--gray);">
+                    {{ __('LeadOS compares your Industry, Role, and Budget settings against your Contacts. If a lead matches all categories, they get a "High Fit" score, allowing you to focus your time only on the most profitable opportunities.') }}
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

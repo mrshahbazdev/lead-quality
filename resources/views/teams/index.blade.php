@@ -57,19 +57,23 @@
             <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1.5rem;">{{ __('Connect your inbox via IMAP/SMTP to send Drip Campaigns and Auto-detect Replies.') }}</p>
             
             <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem;">
-                @foreach(\App\Models\EmailAccount::where('team_id', $currentTeam->id)->get() as $account)
-                    <li style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <div>
-                            <span style="font-weight: 500;">{{ $account->email_address }}</span>
-                            <div style="color: var(--gray); font-size: 0.85rem;">IMAP: {{ $account->imap_host }}</div>
-                        </div>
-                        <form action="{{ route('email-accounts.destroy', $account) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn" style="background: rgba(239, 68, 68, 0.2); color: #ef4444; padding: 0.25rem 0.75rem; font-size: 0.8rem;">{{ __('Disconnect') }}</button>
-                        </form>
-                    </li>
-                @endforeach
+                @if($currentTeam)
+                    @foreach(\App\Models\EmailAccount::where('team_id', $currentTeam->id)->get() as $account)
+                        <li style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <div>
+                                <span style="font-weight: 500;">{{ $account->email_address }}</span>
+                                <div style="color: var(--gray); font-size: 0.85rem;">IMAP: {{ $account->imap_host }}</div>
+                            </div>
+                            <form action="{{ route('email-accounts.destroy', $account) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn" style="background: rgba(239, 68, 68, 0.2); color: #ef4444; padding: 0.25rem 0.75rem; font-size: 0.8rem;">{{ __('Disconnect') }}</button>
+                            </form>
+                        </li>
+                    @endforeach
+                @else
+                    <li style="color: var(--gray); font-size: 0.9rem;">{{ __('Create a workspace first to connect email.') }}</li>
+                @endif
             </ul>
 
             <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">{{ __('Connect New Account') }}</h4>
@@ -146,12 +150,12 @@
                     @csrf
                     <div style="margin-bottom: 1rem;">
                         <label style="display: block; margin-bottom: 0.5rem; color: var(--gray);">{{ __('API Key') }}</label>
-                        <input type="password" name="openai_api_key" class="form-control" placeholder="sk-..." value="{{ $currentTeam->openai_api_key ? '********************************' : '' }}" required>
-                        @if ($currentTeam->openai_api_key)
+                        <input type="password" name="openai_api_key" class="form-control" placeholder="sk-..." value="{{ ($currentTeam && $currentTeam->openai_api_key) ? '********************************' : '' }}" required>
+                        @if ($currentTeam && $currentTeam->openai_api_key)
                             <small style="color: #10b981; margin-top: 0.5rem; display: block;">{{ __('✓ Key is currently saved.') }}</small>
                         @endif
                     </div>
-                    <button type="submit" class="btn btn-outline" style="width: 100%; justify-content: center;">{{ __('Save AI Key') }}</button>
+                    <button type="submit" class="btn btn-outline" style="width: 100%; justify-content: center;" {{ !$currentTeam ? 'disabled' : '' }}>{{ __('Save AI Key') }}</button>
                 </form>
             </div>
 
@@ -162,16 +166,16 @@
                     @csrf
                     <div style="margin-bottom: 1rem;">
                         <label style="display: block; margin-bottom: 0.5rem; color: var(--gray);">{{ __('API Keys') }}</label>
-                        <textarea name="groq_api_keys" class="form-control" placeholder="gsk_...\ngsk_..." rows="4" required>{{ $currentTeam->groq_api_keys ? implode("\n", $currentTeam->groq_api_keys) : '' }}</textarea>
-                        @if ($currentTeam->groq_api_keys && count($currentTeam->groq_api_keys) > 0)
+                        <textarea name="groq_api_keys" class="form-control" placeholder="gsk_...\ngsk_..." rows="4" required>{{ ($currentTeam && $currentTeam->groq_api_keys) ? implode("\n", $currentTeam->groq_api_keys) : '' }}</textarea>
+                        @if ($currentTeam && $currentTeam->groq_api_keys && count($currentTeam->groq_api_keys) > 0)
                             <small style="color: #10b981; margin-top: 0.5rem; display: block;">{{ __('✓ :count key(s) currently saved.', ['count' => count($currentTeam->groq_api_keys)]) }}</small>
                         @endif
                     </div>
                     <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.5rem;">
-                        <button type="submit" class="btn btn-outline" style="width: 100%; justify-content: center;">{{ __('Save Groq Keys') }}</button>
+                        <button type="submit" class="btn btn-outline" style="width: 100%; justify-content: center;" {{ !$currentTeam ? 'disabled' : '' }}>{{ __('Save Groq Keys') }}</button>
                     </div>
                 </form>
-                @if ($currentTeam->groq_api_keys && count($currentTeam->groq_api_keys) > 0)
+                @if ($currentTeam && $currentTeam->groq_api_keys && count($currentTeam->groq_api_keys) > 0)
                 <form action="{{ route('teams.test-groq-keys') }}" method="POST" style="margin-top: 0.5rem;">
                     @csrf
                     <button type="submit" class="btn" style="width: 100%; justify-content: center; background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">{{ __('Test API Connection') }}</button>

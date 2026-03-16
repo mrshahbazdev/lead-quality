@@ -44,11 +44,13 @@
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                     <div class="form-group">
-                        <label style="display: block; margin-bottom: 0.5rem; color: var(--gray);">{{ __('Min. Budget ($)') }}</label>
+                        <label style="display: block; margin-bottom: 0.25rem; color: var(--gray);">{{ __('Min. Budget ($)') }}</label>
+                        <p style="font-size: 0.7rem; color: var(--gray); margin-bottom: 0.5rem;">{{ __('Target client\'s yearly/project spend.') }}</p>
                         <input type="number" name="budget_min" value="{{ $profile->budget_min }}" step="0.01" style="width: 100%; padding: 0.75rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 0.5rem; color: white;">
                     </div>
                     <div class="form-group">
-                        <label style="display: block; margin-bottom: 0.5rem; color: var(--gray);">{{ __('Max. Budget ($)') }}</label>
+                        <label style="display: block; margin-bottom: 0.25rem; color: var(--gray);">{{ __('Max. Budget ($)') }}</label>
+                        <p style="font-size: 0.7rem; color: var(--gray); margin-bottom: 0.5rem;">{{ __('Upper limit for project/deal size.') }}</p>
                         <input type="number" name="budget_max" value="{{ $profile->budget_max }}" step="0.01" style="width: 100%; padding: 0.75rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 0.5rem; color: white;">
                     </div>
                 </div>

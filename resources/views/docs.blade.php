@@ -55,12 +55,39 @@
 
         .docs-container { padding: 8rem 2rem 4rem; max-width: 900px; margin: 0 auto; }
         .card { background: var(--dark-2); border: 1px solid var(--glass-border); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
+            .nav-links.active { 
+                display: flex; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; left: 0; width: 100%; 
+                background: var(--dark-2); 
+                padding: 1.5rem; 
+                border-bottom: 1px solid var(--glass-border);
+                gap: 1.5rem;
+            }
+            .mobile-menu-toggle { display: block !important; color: white; font-size: 1.5rem; cursor: pointer; }
+            
+            .docs-container { padding: 6rem 1rem 2rem; }
+            .docs-container h1 { font-size: 2rem !important; }
+            .card { padding: 1.5rem; }
+        }
+
+        .mobile-menu-toggle { display: none; }
     </style>
 </head>
 <body>
     <nav>
+    <nav>
         <a href="/" class="logo"><i class="fa-solid fa-chart-line"></i> Lead<span>OS</span></a>
-        <div class="nav-links">
+        <div class="mobile-menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('active')">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="nav-links" id="nav-links">
             <x-language-switcher />
             <a href="{{ route('dashboard') }}" class="btn btn-primary">{{ __('Go to Dashboard') }}</a>
         </div>

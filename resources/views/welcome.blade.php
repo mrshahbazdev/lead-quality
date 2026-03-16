@@ -95,12 +95,46 @@
 
         /* Footer */
         footer { padding: 4rem 2rem; border-top: 1px solid var(--glass-border); text-align: center; color: var(--gray); font-size: 0.9rem; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
+            .nav-links.active { 
+                display: flex; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; left: 0; width: 100%; 
+                background: var(--dark-2); 
+                padding: 1.5rem; 
+                border-bottom: 1px solid var(--glass-border);
+                gap: 1.5rem;
+            }
+            .mobile-menu-toggle { display: block !important; color: white; font-size: 1.5rem; cursor: pointer; }
+            
+            .hero { padding: 8rem 1rem 4rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1rem; }
+            .hero-actions { flex-direction: column; gap: 0.75rem; }
+            .hero-actions .btn { width: 100%; }
+
+            .section-header h2 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .preview-container { margin-top: 2rem; border-radius: 1rem; }
+            .preview-inner { height: 300px; }
+        }
+
+        .mobile-menu-toggle { display: none; }
     </style>
 </head>
 <body>
     <nav>
+    <nav>
         <a href="/" class="logo"><i class="fa-solid fa-chart-line"></i> Lead<span>OS</span></a>
-        <div class="nav-links">
+        <div class="mobile-menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('active')">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="nav-links" id="nav-links">
             <x-language-switcher />
             <a href="{{ route('docs') }}">{{ __('Documentation') }}</a>
             @auth

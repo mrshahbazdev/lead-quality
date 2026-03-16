@@ -70,23 +70,23 @@
             z-index: -1; border-radius: 50%;
         }
 
-        .hero h1 { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .hero h1 { font-size: clamp(2.5rem, 10vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
         .hero h1 span { background: linear-gradient(135deg, var(--primary) 0%, #ff5e00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.25rem; color: var(--gray); max-width: 600px; margin: 0 auto 3rem; }
-        .hero-actions { display: flex; justify-content: center; gap: 1rem; }
+        .hero p { font-size: clamp(1rem, 4vw, 1.25rem); color: var(--gray); max-width: 600px; margin: 0 auto 3rem; }
+        .hero-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
         .hero-actions .btn { padding: 1rem 2rem; font-size: 1rem; border-radius: 999px; }
 
         /* Dashboard Preview */
-        .preview-container { margin: 4rem auto 0; max-width: 1000px; padding: 1rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); transform: perspective(1000px) rotateX(2deg); }
-        .preview-inner { background: var(--dark-2); border-radius: 0.75rem; height: 500px; overflow: hidden; position: relative; border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; color: var(--gray); }
+        .preview-container { margin: 4rem auto 0; max-width: 1000px; padding: 1rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); transform: perspective(1000px) rotateX(2deg); width: 100%; }
+        .preview-inner { background: var(--dark-2); border-radius: 0.75rem; height: clamp(250px, 50vh, 500px); overflow: hidden; position: relative; border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; color: var(--gray); }
         
         /* Features */
-        .features { padding: 8rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .features { padding: clamp(4rem, 10vw, 8rem) 1.5rem; max-width: 1200px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .section-header h2 { font-size: clamp(1.75rem, 5vw, 2.5rem); font-weight: 700; margin-bottom: 1rem; }
         .section-header p { color: var(--gray); font-size: 1.1rem; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(Min(100%, 300px), 1fr)); gap: 2rem; }
         .feature-card { background: var(--dark-2); border: 1px solid var(--glass-border); border-radius: 1rem; padding: 2.5rem 2rem; transition: transform 0.3s, box-shadow 0.3s; }
         .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); border-color: rgba(255, 140, 0, 0.3); }
         .feature-icon { width: 50px; height: 50px; border-radius: 1rem; background: rgba(255, 140, 0, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
@@ -109,19 +109,16 @@
                 padding: 1.5rem; 
                 border-bottom: 1px solid var(--glass-border);
                 gap: 1.5rem;
+                z-index: 200;
             }
             .mobile-menu-toggle { display: block !important; color: white; font-size: 1.5rem; cursor: pointer; }
             
-            .hero { padding: 8rem 1rem 4rem; }
-            .hero h1 { font-size: 2.8rem; }
-            .hero p { font-size: 1rem; }
-            .hero-actions { flex-direction: column; gap: 0.75rem; }
+            .hero { padding: 8rem 1rem 4rem; width: 100%; overflow: hidden; }
+            .hero-actions { flex-direction: column; gap: 0.75rem; padding: 0 1rem; }
             .hero-actions .btn { width: 100%; }
 
-            .section-header h2 { font-size: 2rem; }
-            .grid { grid-template-columns: 1fr; }
-            .preview-container { margin-top: 2rem; border-radius: 1rem; }
-            .preview-inner { height: 300px; }
+            .preview-container { transform: none; margin-top: 2rem; border-radius: 1rem; }
+            .features { padding: 4rem 1rem; }
         }
 
         .mobile-menu-toggle { display: none; }

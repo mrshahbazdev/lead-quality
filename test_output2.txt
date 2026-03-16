@@ -1,0 +1,61 @@
+﻿
+   PASS  Tests\Unit\ExampleTest
+  Γ£ô that true is true                0.01s  
+
+   PASS  Tests\Feature\AuthIsolationTest
+  Γ£ô unauthenticated user is redirecΓÇª 0.63s  
+  Γ£ô authenticated user can access dΓÇª 0.39s  
+  Γ£ô user cannot see other users conΓÇª 0.09s  
+
+   PASS  Tests\Feature\Auth\AuthenticationTest
+  Γ£ô login screen can be rendered     0.08s  
+  Γ£ô users can authenticate using thΓÇª 0.07s  
+  Γ£ô users can not authenticate withΓÇª 0.25s  
+  Γ£ô users can logout                 0.04s  
+
+   PASS  Tests\Feature\Auth\EmailVerificationTest
+  Γ£ô email verification screen can bΓÇª 0.05s  
+  Γ£ô email can be verified            0.06s  
+  Γ£ô email is not verified with invaΓÇª 0.05s  
+
+   PASS  Tests\Feature\Auth\PasswordConfirmationTest
+  Γ£ô confirm password screen can beΓÇª  0.86s  
+  Γ£ô password can be confirmed        0.05s  
+  Γ£ô password is not confirmed withΓÇª  0.25s  
+
+   PASS  Tests\Feature\Auth\PasswordResetTest
+  Γ£ô reset password link screen canΓÇª  0.14s  
+  Γ£ô reset password link can be requΓÇª 0.31s  
+  Γ£ô reset password screen can be reΓÇª 0.26s  
+  Γ£ô password can be reset with valiΓÇª 0.25s  
+
+   PASS  Tests\Feature\Auth\PasswordUpdateTest
+  Γ£ô password can be updated          0.05s  
+  Γ£ô correct password must be providΓÇª 0.03s  
+
+   PASS  Tests\Feature\Auth\RegistrationTest
+  Γ£ô registration screen can be rendΓÇª 0.05s  
+  Γ£ô new users can register           0.04s  
+
+   PASS  Tests\Feature\ExampleTest
+  Γ£ô the application returns a succeΓÇª 0.04s  
+
+   PASS  Tests\Feature\LeadScoreEngineTest
+  Γ£ô it calculates perfect score forΓÇª 0.04s  
+  Γ£ô it identifies mismatches         0.04s  
+
+   PASS  Tests\Feature\NetworkStrategyEngineTest
+  Γ£ô it tracks daily outreach progreΓÇª 0.07s  
+  Γ£ô it suggests new contacts for ouΓÇª 0.06s  
+  Γ£ô it suggests hot leads for meetiΓÇª 0.05s  
+
+   PASS  Tests\Feature\ProfileTest
+  Γ£ô profile page is displayed        0.07s  
+  Γ£ô profile information can be updaΓÇª 0.06s  
+  Γ£ô email verification status is unΓÇª 0.05s  
+  Γ£ô user can delete their account    0.04s  
+  Γ£ô correct password must be providΓÇª 0.05s  
+
+  Tests:    33 passed (77 assertions)
+  Duration: 5.00s
+

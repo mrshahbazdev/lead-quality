@@ -17,7 +17,12 @@ class ContactController extends Controller
 
     public function index()
     {
-        $contacts = Contact::where('team_id', auth()->user()->current_team_id)->latest()->get();
+        $teamId = auth()->user()->current_team_id;
+        if (!$teamId) {
+            return view('contacts.index', ['contacts' => collect(), 'noWorkspace' => true]);
+        }
+
+        $contacts = Contact::where('team_id', $teamId)->latest()->get();
         
         $contacts->each(function ($contact) {
             $contact->analysis = $this->scoreEngine->calculateScore($contact);
@@ -28,11 +33,19 @@ class ContactController extends Controller
 
     public function create()
     {
+        if (!auth()->user()->current_team_id) {
+            return redirect()->route('contacts.index')->with('error', __('Please create or select a Workspace first.'));
+        }
         return view('contacts.create');
     }
 
     public function store(Request $request)
     {
+        $teamId = auth()->user()->current_team_id;
+        if (!$teamId) {
+            return redirect()->back()->with('error', __('Please create or select a Workspace first.'));
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'company' => 'nullable|string|max:255',

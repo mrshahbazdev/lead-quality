@@ -13,17 +13,30 @@
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
         <h2>{{ __('All Contacts') }}</h2>
         <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
-             <div class="csv-help" style="font-size: 0.75rem; color: var(--gray); background: var(--glass); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px dashed var(--glass-border);">
-                <strong>{{ __('CSV Format') }}:</strong> name (req), email, company, position, industry, role, budget, notes
-             </div>
-             <form action="{{ route('contacts.import') }}" method="POST" enctype="multipart/form-data" id="importForm" style="display: none;">
-                @csrf
-                <input type="file" name="csv_file" id="csvFileInput" onchange="document.getElementById('importForm').submit()">
-             </form>
-             <button onclick="document.getElementById('csvFileInput').click()" class="btn" style="background: var(--glass); color: white; border: 1px solid var(--glass-border);">📥 {{ __('Import CSV') }}</button>
-             <a href="{{ route('contacts.create') }}" class="btn btn-primary">+ {{ __('Add Contact') }}</a>
+             @if(!isset($noWorkspace))
+                 <div class="csv-help" style="font-size: 0.75rem; color: var(--gray); background: var(--glass); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px dashed var(--glass-border);">
+                    <strong>{{ __('CSV Format') }}:</strong> name (req), email, company, position, industry, role, budget, notes
+                 </div>
+                 <form action="{{ route('contacts.import') }}" method="POST" enctype="multipart/form-data" id="importForm" style="display: none;">
+                    @csrf
+                    <input type="file" name="csv_file" id="csvFileInput" onchange="document.getElementById('importForm').submit()">
+                 </form>
+                 <button onclick="document.getElementById('csvFileInput').click()" class="btn" style="background: var(--glass); color: white; border: 1px solid var(--glass-border);">📥 {{ __('Import CSV') }}</button>
+                 <a href="{{ route('contacts.create') }}" class="btn btn-primary">+ {{ __('Add Contact') }}</a>
+             @else
+                 <a href="{{ route('teams.index') }}" class="btn" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2);">⚠️ {{ __('Setup Workspace First') }}</a>
+             @endif
         </div>
     </div>
+
+    @if(isset($noWorkspace))
+        <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); padding: 3rem; text-align: center; border-radius: 1rem; margin-bottom: 2rem;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🏢</div>
+            <h3 style="color: #ef4444; margin-bottom: 0.5rem;">{{ __('Workspace Required') }}</h3>
+            <p style="color: var(--gray); margin-bottom: 1.5rem;">{{ __('To keep your data private and secure, you must create or select a Workspace before adding contacts.') }}</p>
+            <a href="{{ route('teams.index') }}" class="btn btn-primary">{{ __('Go to Workspaces') }}</a>
+        </div>
+    @endif
 
     <div class="table-responsive">
         <table>

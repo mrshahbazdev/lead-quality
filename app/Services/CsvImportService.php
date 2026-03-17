@@ -18,9 +18,11 @@ class CsvImportService
      * Import contacts from a CSV file.
      *
      * @param string $filePath
+     * @param int $userId
+     * @param int $teamId
      * @return array
      */
-    public function import(string $filePath): array
+    public function import(string $filePath, int $userId, int $teamId): array
     {
         $results = [
             'success' => 0,
@@ -38,6 +40,19 @@ class CsvImportService
             while (($row = fgetcsv($handle, 1000, ',')) !== false) {
                 if (!$header) {
                     $header = array_map('strtolower', $row);
+                    // Check for required "name" column
+                    if (!in_array('name', $header)) {
+                        $results['errors'][] = "Missing 'name' column in CSV header.";
+                        fclose($handle);
+                        return $results;
+                    }
+                    continue;
+                }
+
+                // Handle rows with different column counts than header
+                if (count($header) !== count($row)) {
+                    $results['failed']++;
+                    $results['errors'][] = "Skipped row due to column count mismatch.";
                     continue;
                 }
 
@@ -45,13 +60,15 @@ class CsvImportService
 
                 try {
                     $contact = Contact::create([
+                        'user_id'  => $userId,
+                        'team_id'  => $teamId,
                         'name'     => $data['name'] ?? 'Unknown',
                         'company'  => $data['company'] ?? null,
                         'position' => $data['position'] ?? null,
                         'industry' => $data['industry'] ?? null,
                         'role'     => $data['role'] ?? null,
                         'source'   => $data['source'] ?? 'CSV Import',
-                        'budget'   => isset($data['budget']) ? (float)$data['budget'] : null,
+                        'budget'   => isset($data['budget']) && is_numeric($data['budget']) ? (float)$data['budget'] : null,
                         'status'   => 'new',
                         'notes'    => $data['notes'] ?? null,
                         'tags'     => isset($data['tags']) ? explode(',', $data['tags']) : [],

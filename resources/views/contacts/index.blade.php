@@ -3,10 +3,19 @@
 @section('title', __('Network Contacts') . ' — LeadOS')
 
 @section('content')
+@if(session('error'))
+    <div class="flash" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: #ef4444;">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ session('error') }}
+    </div>
+@endif
 <div class="card">
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
         <h2>{{ __('All Contacts') }}</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+             <div class="csv-help" style="font-size: 0.75rem; color: var(--gray); background: var(--glass); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px dashed var(--glass-border);">
+                <strong>{{ __('CSV Format') }}:</strong> name (req), email, company, position, industry, role, budget, notes
+             </div>
              <form action="{{ route('contacts.import') }}" method="POST" enctype="multipart/form-data" id="importForm" style="display: none;">
                 @csrf
                 <input type="file" name="csv_file" onchange="document.getElementById('importForm').submit()">

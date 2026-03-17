@@ -100,7 +100,16 @@ class ContactController extends Controller
         ]);
 
         $path = $request->file('csv_file')->getRealPath();
-        $results = $importService->import($path);
+        $results = $importService->import(
+            $path, 
+            auth()->id(), 
+            auth()->user()->current_team_id
+        );
+
+        if (!empty($results['errors'])) {
+            return redirect()->route('contacts.index')
+                ->with('error', __('Import partially failed: ') . implode(', ', array_slice($results['errors'], 0, 3)));
+        }
 
         return redirect()->route('contacts.index')->with('success', __('Imported :count contacts successfully!', ['count' => $results['success']]));
     }

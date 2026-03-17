@@ -76,8 +76,14 @@
                         <td>
                             {{ $contact->last_interaction_at ? $contact->last_interaction_at->diffForHumans() : __('No interaction yet') }}
                         </td>
-                        <td>
-                            <a href="{{ route('contacts.show', $contact) }}" class="nav-link" style="display: inline-flex; padding: 0.5rem;">👁️</a>
+                        <td style="display: flex; gap: 0.5rem; align-items: center;">
+                            <a href="{{ route('contacts.show', $contact) }}" class="btn" style="padding: 0.4rem 0.6rem; background: var(--glass); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;" title="{{ __('View') }}">👁️</a>
+                            <a href="{{ route('contacts.edit', $contact) }}" class="btn" style="padding: 0.4rem 0.6rem; background: var(--glass); color: #ffa333; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;" title="{{ __('Edit') }}">✏️</a>
+                            <form action="{{ route('contacts.destroy', $contact) }}" method="POST" onsubmit="return confirm('{{ __('Are you sure you want to delete this contact?') }}')" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn" style="padding: 0.4rem 0.6rem; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); display: flex; align-items: center; justify-content: center; font-size: 0.9rem;" title="{{ __('Delete') }}">🗑️</button>
+                            </form>
                         </td>
                     </tr>
                 @empty

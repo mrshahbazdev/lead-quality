@@ -93,6 +93,37 @@ class ContactController extends Controller
         return view('contacts.show', compact('contact', 'templates', 'aiInsights', 'sequences'));
     }
 
+    public function edit(Contact $contact)
+    {
+        return view('contacts.edit', compact('contact'));
+    }
+
+    public function update(Request $request, Contact $contact)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'position' => 'nullable|string|max:255',
+            'industry' => 'nullable|string|max:255',
+            'role' => 'nullable|string|max:255',
+            'budget' => 'nullable|numeric',
+            'notes' => 'nullable|string',
+            'email' => 'nullable|email|max:255',
+            'website' => 'nullable|url|max:255',
+            'linkedin' => 'nullable|url|max:255',
+        ]);
+
+        $contact->update($validated);
+
+        return redirect()->route('contacts.show', $contact)->with('success', __('Contact updated successfully!'));
+    }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+        return redirect()->route('contacts.index')->with('success', __('Contact deleted successfully!'));
+    }
+
     public function analyzeAi(Contact $contact, \App\Services\AiLeadScoringService $aiScoringService)
     {
         $analysis = $aiScoringService->analyze($contact);

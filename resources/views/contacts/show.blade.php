@@ -11,6 +11,17 @@
                 <p style="color: var(--gray); font-size: 1.1rem;">{{ $contact->position }} at <span style="color: white;">{{ $contact->company }}</span></p>
             </div>
             <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <a href="{{ route('contacts.edit', $contact) }}" class="btn" style="background: var(--glass); color: #ffa333; border: 1px solid rgba(255, 163, 51, 0.3); padding: 0.5rem 1rem;">
+                    ✏️ {{ __('Edit') }}
+                </a>
+                <form action="{{ route('contacts.destroy', $contact) }}" method="POST" onsubmit="return confirm('{{ __('Are you sure you want to delete this contact?') }}')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); padding: 0.5rem 1rem;">
+                        🗑️ {{ __('Delete') }}
+                    </button>
+                </form>
+
                 @if($contact->ai_high_probability)
                     <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; padding: 0.5rem 1rem; font-size: 1rem; border: 1px solid rgba(245, 158, 11, 0.3); box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);">
                         ⭐ {{ __('High Probability Customer') }}

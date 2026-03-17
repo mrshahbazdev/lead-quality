@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTeam;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
+    use BelongsToTeam;
+
     protected $fillable = [
         'user_id',
         'name',

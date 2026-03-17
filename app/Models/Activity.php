@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTeam;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
+    use BelongsToTeam;
+
     protected $fillable = [
         'user_id',
+        'team_id',
         'contact_id',
         'type',
         'scheduled_at',

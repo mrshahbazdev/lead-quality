@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTeam;
 use Illuminate\Database\Eloquent\Model;
 
 class Sequence extends Model
 {
+    use BelongsToTeam;
+
     protected $fillable = ['name', 'team_id', 'is_active'];
 
     public function team()

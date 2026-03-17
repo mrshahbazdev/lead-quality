@@ -18,9 +18,9 @@
              </div>
              <form action="{{ route('contacts.import') }}" method="POST" enctype="multipart/form-data" id="importForm" style="display: none;">
                 @csrf
-                <input type="file" name="csv_file" onchange="document.getElementById('importForm').submit()">
+                <input type="file" name="csv_file" id="csvFileInput" onchange="document.getElementById('importForm').submit()">
              </form>
-             <button onclick="document.querySelector('#importForm input').click()" class="btn" style="background: var(--glass); color: white; border: 1px solid var(--glass-border);">📥 {{ __('Import CSV') }}</button>
+             <button onclick="document.getElementById('csvFileInput').click()" class="btn" style="background: var(--glass); color: white; border: 1px solid var(--glass-border);">📥 {{ __('Import CSV') }}</button>
              <a href="{{ route('contacts.create') }}" class="btn btn-primary">+ {{ __('Add Contact') }}</a>
         </div>
     </div>

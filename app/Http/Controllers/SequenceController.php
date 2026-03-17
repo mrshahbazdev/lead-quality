@@ -8,16 +8,25 @@ class SequenceController extends Controller
 {
     public function index()
     {
-        $sequences = \App\Models\Sequence::where('team_id', auth()->user()->current_team_id)->withCount('contacts')->get();
+        $teamId = auth()->user()->current_team_id;
+        if (!$teamId) {
+            return view('sequences.index', ['sequences' => collect(), 'noWorkspace' => true]);
+        }
+        $sequences = \App\Models\Sequence::where('team_id', $teamId)->withCount('contacts')->get();
         return view('sequences.index', compact('sequences'));
     }
 
     public function store(Request $request)
     {
+        $teamId = auth()->user()->current_team_id;
+        if (!$teamId) {
+            return redirect()->back()->with('error', __('Please create or select a Workspace first.'));
+        }
+
         $request->validate(['name' => 'required|string|max:255']);
         \App\Models\Sequence::create([
             'name' => $request->name,
-            'team_id' => auth()->user()->current_team_id
+            'team_id' => $teamId
         ]);
         return redirect()->route('sequences.index')->with('success', __('Sequence created!'));
     }

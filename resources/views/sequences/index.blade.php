@@ -9,8 +9,19 @@
             <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">{{ __('Automated Sequences') }}</h2>
             <p style="color: var(--gray); font-size: 1.1rem;">{{ __('Build multi-step email drip campaigns to engage your leads on autopilot.') }}</p>
         </div>
-        <button onclick="document.getElementById('newSequenceForm').style.display='block'" class="btn btn-primary">+ {{ __('New Sequence') }}</button>
+        @if(!isset($noWorkspace))
+            <button onclick="document.getElementById('newSequenceForm').style.display='block'" class="btn btn-primary">+ {{ __('New Sequence') }}</button>
+        @else
+            <a href="{{ route('teams.index') }}" class="btn" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2);">⚠️ {{ __('Setup Workspace First') }}</a>
+        @endif
     </div>
+
+    @if(isset($noWorkspace))
+        <div style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); padding: 2rem; border-radius: 1rem; text-align: center; margin-bottom: 2rem;">
+            <p style="color: #ef4444; margin-bottom: 1rem;">{{ __('You need an active Workspace to manage sequences.') }}</p>
+            <a href="{{ route('teams.index') }}" class="btn btn-primary">{{ __('Go to Workspaces') }}</a>
+        </div>
+    @endif
 
     <!-- Create Sequence Inline Form -->
     <div id="newSequenceForm" style="display: none; background: var(--glass); border: 1px solid var(--primary); border-radius: 1rem; padding: 1.5rem; margin-bottom: 2rem;">

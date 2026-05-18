@@ -15,6 +15,7 @@ class LeadImportController extends Controller
             'company' => 'nullable|string',
             'position' => 'nullable|string',
             'linkedin' => 'nullable|url',
+            'source' => 'nullable|string|max:50',
         ]);
 
         $user = $request->user();
@@ -48,10 +49,13 @@ class LeadImportController extends Controller
         }
 
         // If not existing, create a new one
+        $source = $validated['source'] ?? 'Chrome Extension';
+        unset($validated['source']);
+
         $contact = \App\Models\Contact::create(array_merge($validated, [
             'user_id' => $user->id,
             'team_id' => $teamId,
-            'source' => 'Chrome Extension'
+            'source' => $source,
         ]));
 
         $analysis = $scoreEngine->calculateScore($contact);
